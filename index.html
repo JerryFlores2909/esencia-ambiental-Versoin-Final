@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Esencia Ambiental: aromas para auto, hogar, oficina y eventos.">
+  <title>Esencia Ambiental | Aromas que crean recuerdos</title>
+
+  <style>
+    /* =========================
+       1. ESTILOS GENERALES
+       ========================= */
+    :root {
+      --verde-oscuro: #173f35;
+      --verde: #2f6b57;
+      --verde-claro: #dfece6;
+      --crema: #f7f3eb;
+      --blanco: #ffffff;
+      --texto: #25302c;
+      --texto-suave: #66716d;
+      --acento: #c98d52;
+      --sombra: 0 18px 45px rgba(23, 63, 53, 0.12);
+      --radio: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--crema);
+      color: var(--texto);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 84px 0;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 36px;
+    }
+
+    .eyebrow {
+      color: var(--acento);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--verde-oscuro);
+      line-height: 1.15;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 14px 0 20px;
+      font-size: clamp(2.5rem, 7vw, 5.4rem);
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin: 10px 0 14px;
+      font-size: clamp(2rem, 4vw, 3.15rem);
+      letter-spacing: -0.035em;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+    }
+
+    .section-heading p:last-child,
+    .hero-copy {
+      color: var(--texto-suave);
+      font-size: 1.08rem;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--verde-oscuro);
+      color: var(--blanco);
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--verde);
+      box-shadow: 0 10px 24px rgba(23, 63, 53, 0.18);
+    }
+
+    .button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 3px solid rgba(201, 141, 82, 0.55);
+      outline-offset: 3px;
+    }
+
+    /* =========================
+       2. ENCABEZADO
+       ========================= */
+    .site-header {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid rgba(23, 63, 53, 0.1);
+      background: rgba(247, 243, 235, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      display: flex;
+      min-height: 72px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: var(--verde-oscuro);
+      font-size: 1.12rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--texto-suave);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--verde-oscuro);
+    }
+
+    /* =========================
+       3. SECCIÓN DE BIENVENIDA
+       ========================= */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 112px 0 96px;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(201, 141, 82, 0.26), transparent 25%),
+        radial-gradient(circle at 88% 76%, rgba(47, 107, 87, 0.2), transparent 28%),
+        var(--crema);
+    }
+
+    .hero::after {
+      position: absolute;
+      right: -80px;
+      bottom: -155px;
+      width: 390px;
+      height: 390px;
+      border: 1px solid rgba(23, 63, 53, 0.16);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .hero-copy {
+      max-width: 640px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .text-link {
+      color: var(--verde-oscuro);
+      font-weight: 800;
+    }
+
+    /* =========================
+       4. PRODUCTOS
+       ========================= */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product-card {
+      display: flex;
+      min-height: 290px;
+      flex-direction: column;
+      padding: 28px;
+      border: 1px solid rgba(23, 63, 53, 0.1);
+      border-radius: var(--radio);
+      background: var(--blanco);
+      box-shadow: 0 8px 28px rgba(23, 63, 53, 0.06);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra);
+    }
+
+    .product-icon {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      margin-bottom: 34px;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--verde-claro);
+      font-size: 1.5rem;
+    }
+
+    .category {
+      margin: 8px 0 24px;
+      color: var(--acento);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .product-card .button {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    /* =========================
+       5. VIDEO
+       ========================= */
+    .video-section {
+      background: var(--verde-oscuro);
+    }
+
+    .video-section h2,
+    .video-section .eyebrow {
+      color: var(--blanco);
+    }
+
+    .video-section .section-heading p:last-child {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .video-frame {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      border-radius: var(--radio);
+      background: #0c211b;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+      aspect-ratio: 16 / 9;
+    }
+
+    #youtube-player,
+    #youtube-player iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* =========================
+       6. FORMULARIO DE COTIZACIÓN
+       ========================= */
+    .quote-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      align-items: start;
+      gap: 64px;
+    }
+
+    .quote-note {
+      padding: 24px;
+      border-left: 4px solid var(--acento);
+      border-radius: 0 16px 16px 0;
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--texto-suave);
+    }
+
+    .quote-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 34px;
+      border: 1px solid rgba(23, 63, 53, 0.1);
+      border-radius: var(--radio);
+      background: var(--blanco);
+      box-shadow: var(--sombra);
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      color: var(--verde-oscuro);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 50px;
+      padding: 11px 13px;
+      border: 1px solid #cdd7d2;
+      border-radius: 12px;
+      background: #fbfcfb;
+      color: var(--texto);
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--verde);
+    }
+
+    .form-actions,
+    .form-message {
+      grid-column: 1 / -1;
+    }
+
+    .form-actions .button {
+      width: 100%;
+    }
+
+    .form-message {
+      display: none;
+      padding: 14px 16px;
+      border: 1px solid #b8d8c8;
+      border-radius: 12px;
+      background: #e9f6ef;
+      color: #185339;
+      font-weight: 700;
+    }
+
+    .form-message.visible {
+      display: block;
+    }
+
+    /* =========================
+       7. PIE DE PÁGINA
+       ========================= */
+    .site-footer {
+      padding: 28px 0;
+      background: #102f27;
+      color: rgba(255, 255, 255, 0.74);
+      text-align: center;
+    }
+
+    /* =========================
+       8. DISEÑO RESPONSIVE
+       ========================= */
+    @media (max-width: 900px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .quote-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .section {
+        padding: 64px 0;
+      }
+
+      .nav {
+        min-height: 64px;
+      }
+
+      .nav-links a:not(:last-child) {
+        display: none;
+      }
+
+      .hero {
+        padding: 82px 0 72px;
+      }
+
+      .products-grid,
+      .quote-form {
+        grid-template-columns: 1fr;
+      }
+
+      .quote-form {
+        padding: 24px;
+      }
+
+      .product-card {
+        min-height: 260px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Encabezado y navegación principal -->
+  <header class="site-header">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="#inicio">Esencia Ambiental</a>
+      <div class="nav-links">
+        <a href="#productos">Productos</a>
+        <a href="#video">Video</a>
+        <a href="#cotizacion">Cotización</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Sección de bienvenida -->
+    <section class="hero" id="inicio">
+      <div class="container">
+        <p class="eyebrow">Aromas que conectan</p>
+        <h1>Convierte cada espacio en una experiencia.</h1>
+        <p class="hero-copy">
+          Fragancias pensadas para acompañar tus trayectos, transformar tus espacios
+          y hacer inolvidables tus eventos.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#productos">Conocer productos</a>
+          <a class="text-link" href="#cotizacion">Cotizar un evento →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tarjetas de productos con atributos data para analítica -->
+    <section class="section" id="productos">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Productos</p>
+          <h2>Una esencia para cada momento</h2>
+          <p>Explora nuestra selección demostrativa de aromas ambientales.</p>
+        </div>
+
+        <div class="products-grid">
+          <article class="product-card" data-product-name="Ruta Fresca" data-product-category="auto">
+            <div class="product-icon" aria-hidden="true">🚗</div>
+            <h3>Ruta Fresca</h3>
+            <p class="category">Auto</p>
+            <button class="button interest-button" type="button">Me interesa</button>
+          </article>
+
+          <article class="product-card" data-product-name="Hogar Sereno" data-product-category="hogar">
+            <div class="product-icon" aria-hidden="true">🏠</div>
+            <h3>Hogar Sereno</h3>
+            <p class="category">Hogar</p>
+            <button class="button interest-button" type="button">Me interesa</button>
+          </article>
+
+          <article class="product-card" data-product-name="Enfoque Verde" data-product-category="oficina">
+            <div class="product-icon" aria-hidden="true">🌿</div>
+            <h3>Enfoque Verde</h3>
+            <p class="category">Oficina</p>
+            <button class="button interest-button" type="button">Me interesa</button>
+          </article>
+
+          <article class="product-card" data-product-name="Momento Único" data-product-category="eventos">
+            <div class="product-icon" aria-hidden="true">✨</div>
+            <h3>Momento Único</h3>
+            <p class="category">Eventos</p>
+            <button class="button interest-button" type="button">Me interesa</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reproductor cargado con la YouTube IFrame Player API -->
+    <section class="section video-section" id="video">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Video</p>
+          <h2>Descubre el poder de una buena ambientación</h2>
+          <p>Reproduce el video para conocer la inspiración detrás de nuestras esencias.</p>
+        </div>
+        <div class="video-frame">
+          <div id="youtube-player" aria-label="Video de Esencia Ambiental"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulario demostrativo: no envía datos a un servidor -->
+    <section class="section" id="cotizacion">
+      <div class="container quote-layout">
+        <div>
+          <p class="eyebrow">Cotización</p>
+          <h2>Hagamos memorable tu próximo evento</h2>
+          <p class="quote-note">
+            Cuéntanos lo esencial. Esta demostración confirma la solicitud en pantalla
+            y no guarda ni envía la información.
+          </p>
+        </div>
+
+        <form class="quote-form" id="quote-form" novalidate>
+          <div class="field">
+            <label for="event-type">Tipo de evento</label>
+            <select id="event-type" name="event_type" required>
+              <option value="">Selecciona una opción</option>
+              <option value="boda">Boda</option>
+              <option value="cumpleanos">Cumpleaños</option>
+              <option value="evento_corporativo">Evento corporativo</option>
+              <option value="evento_masivo">Evento masivo</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="attendee-range">Número de asistentes</label>
+            <select id="attendee-range" name="attendee_range" required>
+              <option value="">Selecciona un rango</option>
+              <option value="1_50">1 a 50</option>
+              <option value="51_100">51 a 100</option>
+              <option value="101_300">101 a 300</option>
+              <option value="301_500">301 a 500</option>
+              <option value="mas_de_500">Más de 500</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="city">Ciudad</label>
+            <input id="city" name="city" type="text" placeholder="Ej. Monterrey" autocomplete="address-level2" required>
+          </div>
+
+          <div class="field">
+            <label for="event-date">Fecha</label>
+            <input id="event-date" name="event_date" type="date" required>
+          </div>
+
+          <div class="form-actions">
+            <button class="button" type="submit">Solicitar cotización</button>
+          </div>
+
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="current-year"></span> Esencia Ambiental · Sitio demostrativo</p>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       CONFIGURACIÓN DE GOOGLE ANALYTICS 4
+       ========================================================= */
+
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // REEMPLAZAR con el ID real de GA4
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    const MEASUREMENT_ID = 'G-XXXXXXXXXX';
+
+    // Crea la capa de datos y la función gtag antes de cargar GA4.
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', MEASUREMENT_ID);
+
+    // Carga gtag.js usando la constante definida arriba.
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(MEASUREMENT_ID)}`;
+    document.head.appendChild(gaScript);
+
+    // Función reutilizable para enviar eventos a GA4 y mostrarlos en consola.
+    function trackEvent(nombre, parametros = {}) {
+      gtag('event', nombre, parametros);
+      console.log('[GA4 event]', nombre, parametros);
+    }
+
+    /* =========================================================
+       EVENTOS DE PRODUCTOS
+       ========================================================= */
+
+    // Registra el producto seleccionado y lleva al usuario a la cotización.
+    document.querySelectorAll('.interest-button').forEach((button) => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.product-card');
+
+        trackEvent('product_interest', {
+          product_name: card.dataset.productName,
+          product_category: card.dataset.productCategory
+        });
+
+        document.querySelector('#cotizacion').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    /* =========================================================
+       EVENTOS DEL FORMULARIO
+       ========================================================= */
+
+    const quoteForm = document.querySelector('#quote-form');
+    const formMessage = document.querySelector('#form-message');
+    let formStarted = false;
+
+    // Envía form_start solo en la primera interacción con un campo.
+    function registerFormStart(event) {
+      if (formStarted || !event.target.matches('input, select')) {
+        return;
+      }
+
+      formStarted = true;
+      trackEvent('form_start', {
+        form_name: 'quote_form'
+      });
+    }
+
+    quoteForm.addEventListener('pointerdown', registerFormStart);
+    quoteForm.addEventListener('focusin', registerFormStart);
+
+    // Evita el envío al servidor, registra el evento y confirma en pantalla.
+    quoteForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!quoteForm.checkValidity()) {
+        quoteForm.reportValidity();
+        return;
+      }
+
+      const formData = new FormData(quoteForm);
+
+      trackEvent('quote_request', {
+        event_type: formData.get('event_type'),
+        attendee_range: formData.get('attendee_range'),
+        city: String(formData.get('city')).trim()
+      });
+
+      formMessage.textContent = '¡Gracias! Tu solicitud de cotización fue registrada correctamente.';
+      formMessage.classList.add('visible');
+    });
+
+    /* =========================================================
+       YOUTUBE IFRAME PLAYER API Y EVENTOS DEL VIDEO
+       ========================================================= */
+
+    // REEMPLAZAR con el ID de tu video.
+    const VIDEO_ID = 'dqZLGDFpLRo';
+
+    let youtubePlayer;
+    let progressTimer;
+    let playbackActive = false;
+    let reachedPercentages = new Set();
+    let videoTitle = 'Video de Esencia Ambiental';
+
+    // Carga la API oficial de YouTube de forma asíncrona.
+    const youtubeApiScript = document.createElement('script');
+    youtubeApiScript.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(youtubeApiScript);
+
+    // YouTube llama automáticamente esta función cuando la API está lista.
+    window.onYouTubeIframeAPIReady = function () {
+      youtubePlayer = new YT.Player('youtube-player', {
+        videoId: VIDEO_ID,
+        playerVars: {
+          rel: 0,
+          modestbranding: 1
+        },
+        events: {
+          onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange
+        }
+      });
+    };
+
+    // Obtiene el título real del video cuando está disponible.
+    function onPlayerReady(event) {
+      const videoData = event.target.getVideoData();
+      if (videoData && videoData.title) {
+        videoTitle = videoData.title;
+      }
+    }
+
+    // Revisa si el video alcanzó 25%, 50% o 75%.
+    function checkVideoProgress() {
+      if (!youtubePlayer || youtubePlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
+        return;
+      }
+
+      const duration = youtubePlayer.getDuration();
+      const currentTime = youtubePlayer.getCurrentTime();
+
+      if (!duration) {
+        return;
+      }
+
+      const currentPercent = (currentTime / duration) * 100;
+
+      [25, 50, 75].forEach((percent) => {
+        if (currentPercent >= percent && !reachedPercentages.has(percent)) {
+          reachedPercentages.add(percent);
+          trackEvent('video_progress', {
+            video_title: videoTitle,
+            video_percent: percent
+          });
+        }
+      });
+    }
+
+    // Inicia o detiene el seguimiento según el estado del reproductor.
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        if (!playbackActive) {
+          playbackActive = true;
+          reachedPercentages = new Set();
+
+          const videoData = youtubePlayer.getVideoData();
+          if (videoData && videoData.title) {
+            videoTitle = videoData.title;
+          }
+
+          trackEvent('video_start', {
+            video_title: videoTitle
+          });
+        }
+
+        clearInterval(progressTimer);
+        progressTimer = setInterval(checkVideoProgress, 1000);
+      }
+
+      if (
+        event.data === YT.PlayerState.PAUSED ||
+        event.data === YT.PlayerState.BUFFERING ||
+        event.data === YT.PlayerState.ENDED
+      ) {
+        clearInterval(progressTimer);
+      }
+
+      if (event.data === YT.PlayerState.ENDED) {
+        checkVideoProgress();
+        trackEvent('video_complete', {
+          video_title: videoTitle
+        });
+
+        // Al terminar, la siguiente reproducción tendrá eventos nuevos.
+        playbackActive = false;
+      }
+    }
+
+    /* Actualiza automáticamente el año del pie de página. */
+    document.querySelector('#current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
